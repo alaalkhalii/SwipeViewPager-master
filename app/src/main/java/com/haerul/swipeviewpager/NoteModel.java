@@ -1,12 +1,12 @@
 package com.haerul.swipeviewpager;
 
-public class Model {
+public class NoteModel {
 
     private int image;
     private String title;
     private String desc;
 
-    public Model(int image, String title, String desc) {
+    public NoteModel(int image, String title, String desc) {
         this.image = image;
         this.title = title;
         this.desc = desc;

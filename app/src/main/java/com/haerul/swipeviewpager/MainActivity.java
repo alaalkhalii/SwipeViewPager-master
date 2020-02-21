@@ -15,12 +15,12 @@ public class MainActivity extends AppCompatActivity {
 
     ViewPager viewPager;
     Adapter adapter;
-    List<Model> models;
+    List<NoteModel> noteModels;
     Integer[] colors = null;
     ArgbEvaluator argbEvaluator = new ArgbEvaluator();
     private String title;
     private String desc;
-private Button order;
+    private Button order;
     @Override
 
 
@@ -29,15 +29,19 @@ private Button order;
         setContentView(R.layout.activity_main);
 
         order = findViewById(R.id.btnOrder);
-
+        noteModels = new ArrayList<>();
+        SharedPrefsManager.initialize(this);
         Intent x=getIntent();
-        title=x.getExtras().getString("title");
-        desc =x.getExtras().getString("description");
+        if(x.getStringExtra("title")!=null  &&x.getStringExtra("description")!= null ){
+            title=x.getStringExtra("title");
+            desc =x.getStringExtra("description");
+            noteModels.add(new NoteModel(R.drawable.brochure,title, desc));
 
-        models = new ArrayList<>();
-        models.add(new Model(R.drawable.brochure,title, desc));
+        }
 
-        adapter = new Adapter(models, this);
+
+
+        adapter = new Adapter(noteModels, this);
 
         viewPager = findViewById(R.id.viewPager);
         viewPager.setAdapter(adapter);
@@ -82,12 +86,12 @@ private Button order;
 
             }
         });
-              order.setOnClickListener(new View.OnClickListener() {
-                  @Override
-                  public void onClick(View view) {
-                      Intent x = new Intent(getApplicationContext(),addNote.class);
-                      startActivity(x);
-                  }
-              });
+        order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent x = new Intent(getApplicationContext(),addNote.class);
+                startActivity(x);
+            }
+        });
     }
 }
