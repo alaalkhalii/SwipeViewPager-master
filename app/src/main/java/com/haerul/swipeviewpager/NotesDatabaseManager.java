@@ -9,8 +9,8 @@ public class NotesDatabaseManager {
     public static void addNewNote(NoteModel noteModel){
 
     }
-
-    public static void getAllNotes(NoteModel noteModel){
+//carry
+    public static void Note(NoteModel noteModel){
 
     }
 
